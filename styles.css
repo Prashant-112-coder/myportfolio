@@ -185,6 +185,101 @@ body {
     background-color: var(--light-bg);
 }
 
+/* Education Section */
+.education-section {
+    background-color: var(--white);
+}
+
+.education-content {
+    background-color: transparent;
+}
+
+.education-item {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--secondary-color);
+    transition: var(--transition);
+}
+
+.education-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.education-item.featured {
+    background: linear-gradient(135deg, #f0f7ff 0%, var(--white) 100%);
+    border-left: 4px solid var(--accent-color);
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+
+.education-header .degree {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.education-header .date {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.university {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.specialization {
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.education-details {
+    color: #666;
+    line-height: 1.6;
+}
+
+.education-details p {
+    margin-bottom: 0.5rem;
+}
+
+.education-block {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-subtitle {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.education-block .skills-section h4 {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.resume-section {
+    background-color: var(--light-bg);
+}
+
 .resume-content {
     background-color: var(--white);
     padding: 2rem;
