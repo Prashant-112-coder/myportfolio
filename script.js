@@ -80,8 +80,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Handle download resume button
-document.querySelector('.btn-primary')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Resume download feature will be implemented. Please update the href attribute with your resume PDF URL.');
-});
+// Resume download works automatically with the href attribute
