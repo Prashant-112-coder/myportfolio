@@ -1,22 +1,41 @@
+// ===============================
 // Dark Mode Toggle
+// ===============================
 const themeToggle = document.getElementById('themeToggle');
 const htmlElement = document.documentElement;
 
-// Check for saved dark mode preference
+// Inject dark-mode text fix CSS (IMPORTANT)
+const darkTextFix = document.createElement('style');
+darkTextFix.textContent = `
+    body.dark-mode .hero-title,
+    body.dark-mode .hero-subtitle,
+    body.dark-mode .intro-text {
+        color: #ffffff !important;
+        text-shadow: 0 0 10px rgba(255,255,255,0.25);
+    }
+`;
+document.head.appendChild(darkTextFix);
+
+// Load saved preference
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
     document.body.classList.add('dark-mode');
-    themeToggle.textContent = '☀️';
+    if (themeToggle) themeToggle.textContent = '☀️';
 }
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isNowDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('darkMode', isNowDark);
-    themeToggle.textContent = isNowDark ? '☀️' : '🌙';
-});
+// Toggle theme
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isNowDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isNowDark);
+        themeToggle.textContent = isNowDark ? '☀️' : '🌙';
+    });
+}
 
+// ===============================
 // Smooth Scrolling
+// ===============================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -30,34 +49,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active Navigation Link Highlight
+// ===============================
+// Active Navigation Highlight
+// ===============================
 window.addEventListener('scroll', () => {
     let current = '';
     const sections = document.querySelectorAll('section[id]');
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - 200)) {
+        if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
+        if (link.getAttribute('href')?.slice(1) === current) {
             link.classList.add('active');
         }
     });
 });
 
-// Scroll Animation for Elements
+// ===============================
+// Scroll Reveal Animation
+// ===============================
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
@@ -66,24 +88,28 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.education-item, .project-card, .certificate-item, .skill-category').forEach(el => {
+document.querySelectorAll(
+    '.education-item, .project-card, .certificate-item, .skill-category'
+).forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'all 0.6s ease';
     observer.observe(el);
 });
 
-// Form Submission Handler
+// ===============================
+// Contact Form (Formspree Ready)
+// ===============================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        // Form will submit to Formspree.io
-        // You need to update the action attribute with your Formspree endpoint
-        // Go to https://formspree.io to get your unique form ID
+    contactForm.addEventListener('submit', () => {
+        // Handled by Formspree
     });
 }
 
-// Navbar active link styling
+// ===============================
+// Navbar Active Style Injection
+// ===============================
 const style = document.createElement('style');
 style.textContent = `
     .nav-link.active {
@@ -94,7 +120,9 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Image lazy loading (if you add images later)
+// ===============================
+// Image Lazy Loading
+// ===============================
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -107,8 +135,12 @@ if ('IntersectionObserver' in window) {
         });
     });
 
-    document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
+    document.querySelectorAll('img[data-src]').forEach(img =>
+        imageObserver.observe(img)
+    );
 }
 
-// Minimize code - no excessive logging
+// ===============================
+// Init Log
+// ===============================
 console.log('Portfolio loaded successfully!');
