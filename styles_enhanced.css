@@ -619,6 +619,11 @@ body.dark-mode .section-subtitle {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
     letter-spacing: 1px;
+    text-align: center;
+}
+
+.social-info {
+    text-align: center;
 }
 
 .contact-details {
@@ -651,6 +656,8 @@ body.dark-mode .section-subtitle {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .social-link {
