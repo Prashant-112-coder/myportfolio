@@ -98,12 +98,35 @@ document.querySelectorAll(
 });
 
 // ===============================
-// Contact Form (Formspree Ready)
+// Contact Form → Open Gmail Compose
 // ===============================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', () => {
-        // Handled by Formspree
+    contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        const name = nameInput?.value?.trim() || 'Visitor';
+        const email = emailInput?.value?.trim() || 'Not provided';
+        const message = messageInput?.value?.trim() || '';
+
+        // Build subject & body for Gmail
+        const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+        const bodyLines = [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            '',
+            'Message:',
+            message
+        ];
+        const body = encodeURIComponent(bodyLines.join('\n'));
+
+        // Open Gmail compose with your email as receiver
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=Prashantikkalaki143@gmail.com&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
     });
 }
 
